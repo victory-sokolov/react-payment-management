@@ -1,5 +1,5 @@
 
-export const isEmpty = (data: object) => {
+export const isEmpty = (data: Object | null) => {
 
     if (!data) {
         return false;
@@ -9,4 +9,8 @@ export const isEmpty = (data: object) => {
         return data.length === 0;
     }
     return Object.entries(data).length === 0;
+};
+
+export const random = (min: number, max: number): number => {
+    return Math.floor((Math.random() * max) + min);
 };
