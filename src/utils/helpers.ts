@@ -1,5 +1,5 @@
 
-export const isEmpty = (data: Object | null) => {
+export const isEmpty = (data: Object | null): boolean => {
 
     if (!data) {
         return false;
