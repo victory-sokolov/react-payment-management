@@ -4,15 +4,14 @@ import { CreditCard } from '../../types';
 import ModalWindow from '../Dialog/ModalWindow';
 import EditCard from '../Forms/EditCard';
 import NewCardForm from '../Forms/NewCardForm';
-import Nav from '../Nav/Nav';
 import SavedCards from './SavedCards';
 
 export default function CardsManager() {
 
     const {isOpen, onOpen, onClose } = useDisclosure();
-    const [editing, setEditing] = useState(false);
+    const [editing, setEditing] = useState<boolean>(false);
     const [cards, setCards] = useState<CreditCard[]>([]);
-    const [currentCard, setCurrentCard] = useState({});
+    const [currentCard, setCurrentCard] = useState<CreditCard>({name: '', cardNumber: '', cvc: '', expiryDate: new Date()});
     const [cardIndex, setCardIndex] = useState(-1);
 
     useEffect(() => {
@@ -64,7 +63,6 @@ export default function CardsManager() {
                     : <NewCardForm title="Add new credit card" setClose={onClose} creditCards={cards} addNewCard={addNewCard} />
                 }
             </ModalWindow>
-            <Nav />
             <SavedCards editCard={onCardEdit} setEditing={setEditing} onOpen={onOpen} cards={cards} deleteCard={deleteCard} />
         </>
     )
