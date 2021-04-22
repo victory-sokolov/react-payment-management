@@ -1,11 +1,15 @@
 import useForm from '../../hooks/useForm';
 import { CreditCard } from '../../types';
 import CardForm from './CardForm';
-import { validateForm } from './validation';
+import validateForm from './validation';
 
-export default function NewCardForm({addNewCard} : any) {
+interface NewCard {
+    addNewCard: (card: CreditCard) => void
+}
 
-    const {values, handleChange, handleSubmit, errors} = useForm({validate: validateForm, callback: persistData});
+export default function NewCardForm({addNewCard} : NewCard) {
+
+    const {values, handleChange, handleSubmit, errors}: any = useForm({validate: validateForm, callback: persistData});
 
     function persistData() {
         const cardInformation: CreditCard = {
