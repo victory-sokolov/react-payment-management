@@ -1,29 +1,37 @@
-import { Button } from '@chakra-ui/button';
-import { Box, Heading, Stack } from '@chakra-ui/layout';
 import {
     Table,
     Tbody,
     Td, Th, Thead,
-    Tr
+    Tr,
+    Button,
+    Box, Heading, Stack
 } from "@chakra-ui/react";
 import { CreditCard } from '../../types';
 import { mask } from '../../utils';
 import { Container } from '../GlobalStyles';
 
-export default function SavedCards({onOpen, cards, editCard, setEditing, deleteCard}: any)  {
+interface ISavedCards {
+    onOpen: () => void,
+    cards: CreditCard[],
+    editCard: (index: number) => void,
+    deleteCard: (index: number) => void,
+    setEditing: (value: React.SetStateAction<boolean>) => void
+}
+
+export default function SavedCards({onOpen, cards, editCard, setEditing, deleteCard}: ISavedCards)  {
 
     return (
         <Container>
             <Box w="100%" p={4} align="right">
-                <Button colorScheme="teal" variant="outline" onClick={() => {
+                <Button data-testid="add-card" colorScheme="teal" variant="outline" onClick={() => {
                     onOpen()
-                    setEditing(false);
+                    setEditing(false)
                 }}>
                     Add Card
                 </Button>
             </Box>
             {
-                (cards.length === 0) ? <Heading>No cards has been added yet</Heading> :
+                (!cards || cards.length === 0) ? <Heading>No cards has been added yet</Heading> :
 
             <Table variant="simple" fontSize={15}>
                 <Thead>
@@ -35,7 +43,7 @@ export default function SavedCards({onOpen, cards, editCard, setEditing, deleteC
                 </Thead>
                 <Tbody>
                     {cards.map((card: CreditCard, index: number) => (
-                        <Tr key={index}>
+                        <Tr data-testid="table-data-row" key={index}>
                             <Td>{card.name}</Td>
                             <Td>{mask(card.cardNumber)}</Td>
                             <Td>

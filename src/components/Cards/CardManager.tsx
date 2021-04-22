@@ -52,15 +52,14 @@ export default function CardsManager() {
             return;
         }
         localStorage.setItem('card', JSON.stringify([cardInformation]));
-        return;
     }
 
     return (
         <>
             <ModalWindow open={isOpen} close={onClose}>
                 {editing
-                    ? <EditCard title="Edit credit card details" setClose={onClose} setEditing={setEditing} currentCard={currentCard} updateCard={updateCard}/>
-                    : <NewCardForm title="Add new credit card" setClose={onClose} creditCards={cards} addNewCard={addNewCard} />
+                    ? <EditCard setEditing={setEditing} currentCard={currentCard} updateCard={updateCard}/>
+                    : <NewCardForm addNewCard={addNewCard} />
                 }
             </ModalWindow>
             <SavedCards editCard={onCardEdit} setEditing={setEditing} onOpen={onOpen} cards={cards} deleteCard={deleteCard} />
