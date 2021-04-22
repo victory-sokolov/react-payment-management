@@ -11,6 +11,4 @@ export const isEmpty = (data: Object | null): boolean => {
     return Object.entries(data).length === 0;
 };
 
-export const random = (min: number, max: number): number => {
-    return Math.floor((Math.random() * max) + min);
-};
+export const random = (min: number, max: number): number => Math.floor((Math.random() * max) + min);
