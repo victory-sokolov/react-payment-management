@@ -26,7 +26,7 @@ export default function ApplePay({paymentMethod}: {paymentMethod: string}) {
                 Pay with Apple Pay
             </Heading>
             <FormControl>
-                <Button colorScheme="teal" width="220px" variant="outline" size="lg" onClick={makePayment}>
+                <Button data-testid='apple-pay-btn' colorScheme="teal" width="220px" variant="outline" size="lg" onClick={makePayment}>
                     <AiFillApple /> Pay
                 </Button>
             </FormControl>

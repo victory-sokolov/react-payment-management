@@ -32,7 +32,8 @@ export default function CreditCards({paymentMethod}: {paymentMethod: string}) {
         <form method="POST">
             <Select placeholder="Select Credit Card" onChange={onCardSelect}>
             {
-                creditCards.map((card: CreditCard, index: number) => (
+
+                creditCards?.map((card: CreditCard, index: number) => (
                     <option value={index} key={index}>{mask(card.cardNumber)}</option>
                 ))
             }
