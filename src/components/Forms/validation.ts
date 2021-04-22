@@ -1,7 +1,7 @@
 
-type InputValues = { [ key: string ]: string };
+type InputValues = { [ key: string ]: string; };
 
-const validateForm = (values: any): InputValues  => {
+const validateForm = (values: any): InputValues => {
 
     const errors: InputValues = {};
 
@@ -14,7 +14,7 @@ const validateForm = (values: any): InputValues  => {
     }
 
     if (!values.cvc || values.cvc.length < 3) {
-        errors.cvc = (values.cvc) ? 'CVC cannot be blank' : 'CVC must be 3 digits long';
+        errors.cvc = (!values.cvc) ? 'CVC cannot be blank' : 'CVC must be 3 digits long';
     }
 
     if (!values.expiryDate) {
