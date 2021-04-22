@@ -16,26 +16,21 @@ const NavBar = () => {
   );
 };
 
-const MenuToggle = ({ toggle, isOpen }:  {toggle: any, isOpen: boolean}) => {
-  return (
+const MenuToggle = ({ toggle, isOpen }:  {toggle: any, isOpen: boolean}) => (
     <Box display={{ base: "block", md: "none" }} onClick={toggle}>
       {isOpen ? <CloseIcon /> : <MenuIcon />}
     </Box>
   );
-};
 
-const MenuItem = ({ children, isLast, to = "/", ...rest }: any) => {
-  return (
+const MenuItem = ({ children, isLast, to = "/", ...rest }: any) => (
     <Link to={to}>
       <Text display="block" {...rest}>
         {children}
       </Text>
     </Link>
   );
-};
 
-const MenuLinks = ({ isOpen }: {isOpen: boolean}) => {
-  return (
+const MenuLinks = ({ isOpen }: {isOpen: boolean}) => (
     <Box
       display={{ base: isOpen ? "block" : "none", md: "block" }}
       flexBasis={{ base: "100%", md: "auto" }}
@@ -53,10 +48,8 @@ const MenuLinks = ({ isOpen }: {isOpen: boolean}) => {
       </Stack>
     </Box>
   );
-};
 
-const NavBarContainer = ({ children, ...props }: any) => {
-  return (
+const NavBarContainer = ({ children, ...props }: any) => (
     <Flex
       as="nav"
       align="center"
@@ -72,6 +65,5 @@ const NavBarContainer = ({ children, ...props }: any) => {
       {children}
     </Flex>
   );
-};
 
 export default NavBar;
