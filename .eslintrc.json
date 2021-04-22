@@ -58,6 +58,8 @@
         ],
         "import/no-extraneous-dependencies": "warn",
         "import/prefer-default-export": "warn",
-        "react/no-array-index-key": "warn"
+        "react/no-array-index-key": "warn",
+        "react/require-default-props": "off",
+        "react/prop-types": "off"
     }
 }
