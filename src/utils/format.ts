@@ -1,8 +1,6 @@
 
 /* Add spaces for credit card */
-export const formatNumber = (num: string): string => {
-    return (num) ? num?.replace(/[^\dA-Z]/g, '').replace(/(.{4})/g, '$1 ').trim() : '';
-};
+export const formatNumber = (num: string): string => (num) ? num?.replace(/[^\dA-Z]/g, '').replace(/(.{4})/g, '$1 ').trim() : '';
 
 /* Mask credit card number */
 export const mask = (card: string): string => {
