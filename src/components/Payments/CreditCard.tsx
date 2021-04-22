@@ -2,17 +2,17 @@ import { useState } from 'react';
 import useForm from '../../hooks/useForm';
 import { AlertStatus } from '../Dialog/Status';
 import CardForm from '../Forms/CardForm';
-import { validateForm } from '../Forms/validation';
+import validateForm from '../Forms/validation';
 import { processPayment } from './ProcessPayment';
 
 export default function CreditCard({paymentMethod}: {paymentMethod: string}) {
 
-    const {values, setValues, handleChange, handleSubmit, errors} = useForm({validate: validateForm, callback: payWithCreditCard});
+    const {values, setValues, handleChange, handleSubmit, errors}: any = useForm({validate: validateForm, callback: payWithCreditCard});
     const [isPaymentCompleted, setIsPaymentCompleted] = useState(false);
 
       function payWithCreditCard() {
         const paymentInfo = {
-            paymentMethod: paymentMethod,
+            paymentMethod,
             name: values.name,
             cardNumber: values.cardNumber,
             cvc: values.cvc,
