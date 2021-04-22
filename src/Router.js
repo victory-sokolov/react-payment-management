@@ -1,8 +1,8 @@
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import App from './App';
-import CardsManager from './components/Cards/CardManager.tsx';
-import Timeline from './components/Timeline/Timeline.tsx';
+import CardsManager from './components/Cards/CardManager';
 import NavBar from './components/Nav/Nav';
+import Timeline from './components/Timeline/Timeline';
 
 export default function Routes() {
 
