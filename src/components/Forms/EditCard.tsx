@@ -1,11 +1,18 @@
 import { useEffect } from 'react';
 import useForm from '../../hooks/useForm';
+import { CreditCard } from '../../types';
 import CardForm from './CardForm';
-import { validateForm } from './validation';
+import validateForm from './validation';
 
-export default function EditCard({currentCard, setEditing, updateCard}: any) {
+interface IEditCard {
+    currentCard: CreditCard,
+    setEditing: (value: React.SetStateAction<boolean>) => void,
+    updateCard: (card: CreditCard) => void
+}
 
-    const {values, setValues, handleChange, handleSubmit, errors} = useForm({validate: validateForm, callback: persistData});
+export default function EditCard({currentCard, setEditing, updateCard}: IEditCard) {
+
+    const {values, setValues, handleChange, handleSubmit, errors}: any = useForm({validate: validateForm, callback: persistData});
 
     useEffect(() => {
         setEditing(true);
@@ -13,7 +20,7 @@ export default function EditCard({currentCard, setEditing, updateCard}: any) {
     }, [])
 
     function persistData()  {
-        updateCard(values)
+        updateCard(values);
     }
 
     return (
