@@ -6,7 +6,13 @@ import {
     ModalHeader, ModalOverlay
 } from "@chakra-ui/react";
 
-export default function ModalWindow({open, close, children}: any) {
+type ModalProps = {
+    open: boolean,
+    close: () => void,
+    children: React.ReactNode
+}
+
+export default function ModalWindow({open, close, children}: ModalProps) {
 
     return (
             <Modal isOpen={open} onClose={close}>

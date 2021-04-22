@@ -3,6 +3,12 @@ import React from "react";
 import { Link } from 'react-router-dom';
 import { CloseIcon, MenuIcon } from './Icons';
 
+type MenuItemProps = {
+  children: React.ReactNode,
+  to?: string,
+  rest?: any
+}
+
 const NavBar = () => {
   const [isOpen, setIsOpen] = React.useState(false);
 
@@ -22,13 +28,14 @@ const MenuToggle = ({ toggle, isOpen }:  {toggle: () => void, isOpen: boolean}) 
     </Box>
   );
 
-const MenuItem = ({ children, isLast, to = "/", ...rest }: any) => (
+const MenuItem = ({ children = null, to = "/", ...rest }: MenuItemProps) => (
     <Link to={to}>
       <Text display="block" {...rest}>
         {children}
       </Text>
     </Link>
-  );
+);
+
 
 const MenuLinks = ({ isOpen }: {isOpen: boolean}) => (
     <Box
@@ -49,7 +56,7 @@ const MenuLinks = ({ isOpen }: {isOpen: boolean}) => (
     </Box>
   );
 
-const NavBarContainer = ({ children, ...props }: any) => (
+const NavBarContainer = ({ children = null, ...props }: {children?: React.ReactNode, props?: any}) => (
     <Flex
       as="nav"
       align="center"
@@ -64,6 +71,7 @@ const NavBarContainer = ({ children, ...props }: any) => (
     >
       {children}
     </Flex>
-  );
+);
+
 
 export default NavBar;
