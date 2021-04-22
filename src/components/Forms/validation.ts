@@ -1,8 +1,10 @@
-import { CreditCard } from '../../types';
 
-const validateForm = (values: CreditCard): Object => {
+type InputValues = { [ key: string ]: string };
 
-    const errors: any = {};
+const validateForm = (values: any): InputValues  => {
+
+    const errors: InputValues = {};
+
     if (!values.cardNumber || values.cardNumber.replace(' ', '').length < 16) {
         errors.cardNumber = (!values.cardNumber) ? 'Card number cannot be blank' : 'Card number must be 16 characters long';
     }

@@ -6,7 +6,15 @@ import { useEffect, useState } from 'react';
 import { formatNumber } from '../../utils';
 import { AlertStatus } from '../Dialog/Status';
 
-export default function CardForm({buttonText, handleSubmit, handleChange, errors, values}: any) {
+type CardForm = {
+    buttonText: string,
+    handleSubmit: (event: React.FormEvent) => void,
+    handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
+    errors: { [key: string]: string },
+    values: { [key: string]: any }
+}
+
+export default function CardForm({buttonText, handleSubmit, handleChange, errors, values}: CardForm) {
 
     const [minDate, setMinDate] = useState('');
 
@@ -21,21 +29,21 @@ export default function CardForm({buttonText, handleSubmit, handleChange, errors
                <VStack spacing={10}>
                     <FormControl id="name">
                         <FormLabel>Card Holder</FormLabel>
-                        <Input type="text" name='name' errorBorderColor="crimson" value={values?.name || ''} onChange={handleChange} placeholder="Card holder name"/>
+                        <Input type="text" name='name' errorBorderColor="crimson" value={values?.name} onChange={handleChange} placeholder="Card holder name"/>
                         {errors.name && <AlertStatus status="error" text={errors.name} />}
                     </FormControl>
                     <FormControl id="card-number">
                     <FormLabel>Card Number</FormLabel>
-                    <Input type="text" maxLength={19} value={formatNumber(values?.cardNumber|| '')} name="cardNumber"
+                    <Input type="text" maxLength={19} value={formatNumber(values?.cardNumber)} name="cardNumber"
                         onChange={handleChange} placeholder="Card number"/>
                     {errors.cardNumber && <AlertStatus status="error" text={errors.cardNumber} />}
                 </FormControl>
 
                 <FormControl>
                     <HStack spacing="24px">
-                        <Input type="month" min={minDate} name="expiryDate" value={values?.expiryDate || new Date()} onChange={handleChange} />
+                        <Input type="month" min={minDate} name="expiryDate" value={values?.expiryDate} onChange={handleChange} />
                         <InputGroup>
-                            <Input type="number" name="cvc" value={values?.cvc|| ''} onChange={handleChange}  placeholder="CVC" />
+                            <Input type="number" name="cvc" value={values?.cvc} onChange={handleChange}  placeholder="CVC" />
                         </InputGroup>
                     </HStack>
                     {errors.cvc && <AlertStatus status="error" text={errors.cvc} />}

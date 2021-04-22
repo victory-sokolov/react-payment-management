@@ -4,13 +4,13 @@ import { CreditCard } from '../../types';
 import CardForm from './CardForm';
 import validateForm from './validation';
 
-interface IEditCard {
+type EditCard = {
     currentCard: CreditCard,
-    setEditing: (value: React.SetStateAction<boolean>) => void,
+    setEditing: (value: boolean) => void,
     updateCard: (card: CreditCard) => void
 }
 
-export default function EditCard({currentCard, setEditing, updateCard}: IEditCard) {
+export default function EditCard({currentCard, setEditing, updateCard}: EditCard) {
 
     const {values, setValues, handleChange, handleSubmit, errors}: any = useForm({validate: validateForm, callback: persistData});
 

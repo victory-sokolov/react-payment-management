@@ -1,20 +1,20 @@
 import { useEffect, useState } from 'react';
 import { isEmpty } from '../utils';
 
-interface InputProps {
-	validate?: any,
-	callback: () => void
+type InputProps = {
+	validate: (values: any) => { [ key: string ]: string; }
+	callback?: () => void
 }
 
 const useForm = ({validate, callback}: InputProps) => {
 
-	const [values, setValues] = useState({});
+	const [values, setValues] = useState<{ [key: string]: any }>({});
 	const [errors, setErrors] = useState({});
 	const [isFormSubmited, setIsFormSubmited] = useState(false);
 
 	useEffect(() => {
 		if (isEmpty(errors) && isFormSubmited) {
-			callback();
+			if(callback) callback();
 		}
   	}, [errors, isFormSubmited]);
 

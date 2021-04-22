@@ -16,7 +16,7 @@ const NavBar = () => {
   );
 };
 
-const MenuToggle = ({ toggle, isOpen }:  {toggle: any, isOpen: boolean}) => (
+const MenuToggle = ({ toggle, isOpen }:  {toggle: () => void, isOpen: boolean}) => (
     <Box display={{ base: "block", md: "none" }} onClick={toggle}>
       {isOpen ? <CloseIcon /> : <MenuIcon />}
     </Box>
