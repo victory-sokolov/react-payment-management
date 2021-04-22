@@ -3,13 +3,13 @@ import { CreditCard } from '../../types';
 import CardForm from './CardForm';
 import validateForm from './validation';
 
-interface NewCard {
+type NewCard = {
     addNewCard: (card: CreditCard) => void
 }
 
 export default function NewCardForm({addNewCard} : NewCard) {
 
-    const {values, handleChange, handleSubmit, errors}: any = useForm({validate: validateForm, callback: persistData});
+    const {values, handleChange, handleSubmit, errors} = useForm({validate: validateForm, callback: persistData});
 
     function persistData() {
         const cardInformation: CreditCard = {
