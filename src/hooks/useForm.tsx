@@ -1,15 +1,12 @@
 import { useEffect, useState } from 'react';
-import { isEmpty } from '../utils/helpers';
+import { isEmpty } from '../utils';
 
 interface InputProps {
 	validate?: any,
-	callback?: any,
+	callback: () => void
 }
 
-export default function useForm({
-	validate,
-	callback,
-}: InputProps): any {
+const useForm = ({validate, callback}: InputProps) => {
 
 	const [values, setValues] = useState({});
 	const [errors, setErrors] = useState({});
@@ -19,7 +16,7 @@ export default function useForm({
 		if (isEmpty(errors) && isFormSubmited) {
 			callback();
 		}
-  	}, [errors]);
+  	}, [errors, isFormSubmited]);
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
 		const nameAttr = e.target.name;
@@ -27,19 +24,20 @@ export default function useForm({
 		if(nameAttr === 'cvc' && inputValue.length > 3) {
 			return;
 		}
-		setValues(values => ({ ...values, [nameAttr]: inputValue }));
+		setValues(data => ({ ...data, [nameAttr]: inputValue }));
 	};
 
 	const handleSubmit = (event: React.FormEvent) => {
 		event.preventDefault();
 		setErrors(validate(values));
 		setIsFormSubmited(true);
-  };
+  	};
 
 	const reset = () => {
-    	setValues("");
+    	setValues({});
  	};
 
-	return {values, setValues, handleChange, handleSubmit, errors, reset};
+	return {values, setValues, handleChange, handleSubmit, errors};
 };
 
+export default useForm;
