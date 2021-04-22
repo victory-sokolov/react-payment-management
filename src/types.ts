@@ -1,9 +1,9 @@
 
 export interface CreditCard {
-    paymentMethod?: string
-    name: string,
-    cardNumber: string,
-    cvc: string,
+    paymentMethod?: string;
+    name: string;
+    cardNumber: string;
+    cvc: string;
     expiryDate: Date;
 }
 
