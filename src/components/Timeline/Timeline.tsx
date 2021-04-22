@@ -1,21 +1,15 @@
 import { Heading, Stack } from '@chakra-ui/layout';
 import {
     Table,
-
     Tbody,
-
-
-
     Td, Th, Thead,
-
-
     Tr
 } from "@chakra-ui/react";
 import { useEffect, useState } from 'react';
+import { AiFillApple } from 'react-icons/ai';
 import { CreditCard } from '../../types';
-import { mask } from '../../utils/format';
+import { mask } from '../../utils';
 import { Container } from '../GlobalStyles';
-import Nav from '../Nav/Nav';
 import { getAllPaymentDetails } from '../Payments/ProcessPayment';
 
 export default function Timeline() {
@@ -27,8 +21,6 @@ export default function Timeline() {
     }, [])
 
     return (
-        <>
-            <Nav />
             <Container>
                 <Stack spacing={6}>
                     <Heading as="h3" size="md">
@@ -46,10 +38,14 @@ export default function Timeline() {
                         <Tbody>
                             {
                                 payments.map((payment: CreditCard, index: number) => (
-                                    <Tr  key={index}>
+                                    <Tr data-testid='payment-timeline' key={index}>
                                         <Td>{payment.name}</Td>
-                                        <Td>{mask(payment?.cardNumber)}</Td>
-                                        <Td>{payment?.paymentMethod}</Td>
+                                        <Td>
+                                            {payment?.cardNumber ? mask(payment.cardNumber) :  <span>None <AiFillApple style={{display: 'inline-block'}}/> </span>}
+                                        </Td>
+                                        <Td>
+                                            {payment?.paymentMethod}
+                                        </Td>
                                     </Tr>
                                 ))
                             }
@@ -57,6 +53,5 @@ export default function Timeline() {
                     </Table>
                 </Stack>
             </Container>
-        </>
     )
 }
