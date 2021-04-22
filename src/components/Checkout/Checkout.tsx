@@ -42,8 +42,9 @@ export function CheckoutForm() {
             case PaymentOptions.SavedCards:
                 return <SavedCreditCards paymentMethod={paymentOptions[PaymentOptions.CreditCard]} />
             default:
-                break;
+                return null;
         }
+
     }
 
     return (
